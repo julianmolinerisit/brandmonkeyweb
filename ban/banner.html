@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@1,500&display=swap" rel="stylesheet">
+   
+   <style>
+      .banner-container {
+        width: 70%;
+        height: 390px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        background-color: magenta;
+      }
+
+      .banner-images {
+        width: 300%;
+        height: 100%;
+        display: flex;
+        transition: all 0.3s ease;
+      }
+
+      .banner-image {
+        width: 33.33%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 30px;
+        color: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      .arrow:hover {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .arrow-left {
+        left: 10px;
+      }
+
+      .arrow-right {
+        right: 10px;
+      }
+
+      .container-video {
+			display: flex;
+			align-items: center;
+		}
+
+		.video {
+			width: 390px;
+			height: 390px;
+			position: relative;
+		}
+
+		.video video {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover; /* ajuste del video al tamaño del contenedor */
+		}
+
+        .texto-video {
+        flex: 1;
+        font-weight: 500;
+        font-size: 16.50px;
+        font-style: oblique;
+        color: white;
+        font-family: sans-serif;
+        margin-left: 20px;
+        margin-top: 5px;
+        margin-right: 20px;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="banner-container">
+      <div class="banner-images">
+        <div class="banner-image">
+
+            <div class="container-video">
+                <div class="texto-video">
+                   <h2>Automatiza, responde y aumenta tus oportunidades comerciales con el Chatbot WhatsApp</h2>
+                   <p>Impulsa tus ventas combinando el poder del chatbot para WhatsApp de Cliengo con tu equipo comercial. Integra WhatsApp a tu negocio para automatizar tus conversaciones y aumentar la efectividad de tus oportunidades comerciales.</p>
+                </div>
+                
+                <div class="video">
+                   <video autoplay loop muted>
+                       <source src="whatbot.mp4" type="video/mp4">
+                     Tu navegador no admite el elemento video.
+                   </video>
+                </div>
+             </div>
+        </div>
+        <div class="banner-image">
+          <img src="../assets/img/professional-profile.png" />
+        </div>
+        <div class="banner-image">
+          <img src="../assets/img/youtube-picture.png" />
+        </div>
+      </div>
+      <div class="arrow arrow-left">&#9664;</div>
+      <div class="arrow arrow-right">&#9654;</div>
+    </div>
+
+    <script>
+const bannerImages = document.querySelector(".banner-images");
+const arrowLeft = document.querySelector(".arrow-left");
+const arrowRight = document.querySelector(".arrow-right");
+
+let counter = 0;
+const size = bannerImages.children[0].clientWidth;
+
+arrowLeft.addEventListener("click", () => {
+  if (counter <= 0) {
+    counter = bannerImages.children.length - 1;
+  } else {
+    counter--;
+  }
+  bannerImages.style.transform = `translateX(-${size * counter}px)`;
+});
+
+arrowRight.addEventListener("click", () => {
+  if (counter >= bannerImages.children.length - 1) {
+    counter = 0;
+  } else {
+    counter++;
+  }
+  bannerImages.style.transform = `translateX(-${size * counter}px)`;
+});
+
+setInterval(() => {
+  if (counter >= bannerImages.children.length - 1) {
+    counter = 0;
+  } else {
+    counter++;
+  }
+  bannerImages.style.transform = `translateX(-${size * counter}px)`;
+}, 20000);
+
+    </script>
+  </body>
+</html>
