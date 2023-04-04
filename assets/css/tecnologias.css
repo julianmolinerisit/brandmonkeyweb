@@ -1,0 +1,156 @@
+.contenedor-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: var(--navbar-shallow-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  margin: 20px 30px;
+  padding: 20px;
+}
+
+.video {
+  margin-right: 20px;
+}
+
+.video video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.texto {
+  text-align: center;
+}
+
+@media (max-width: 950px) {
+  .contenedor-video {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .video {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+
+ /* -------------------------scrool------------------------ */
+ .tecnologias {
+  position: relative;
+  overflow-x: hidden; /* Hacemos que el overflow sea oculto para que no se vea el scroll */
+  white-space: nowrap; /* evita que los elementos se dividan en varias líneas */
+}
+
+.tecnologias-text{
+text-align: center;
+}
+
+.contenedor {
+  display: inline-block;
+  width: 100%;
+  animation: desplazar 10s linear infinite; /* Animación de desplazamiento automático */
+}
+
+.elemento {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  margin-right: 20px;
+}
+
+.tecnologias-image{
+  width: 100px;
+  height: 100px;
+}
+
+.navegacion {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.flecha-izquierda,
+.flecha-derecha {
+  font-size: 0px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.flecha-izquierda:hover,
+.flecha-derecha:hover {
+  color: #333;
+}
+
+/* Animación de desplazamiento automático */
+@keyframes desplazar {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+/* ----Footer----- */
+footer {
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.column {
+  width: 30%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.column ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.column ul li {
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.social-icons a:hover {
+  background-color: #fff;
+  color: #555;
+  transition: background-color 0.3s, color 0.3s;
+}
+

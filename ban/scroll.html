@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* -------------------------scrool------------------------ */
+        .tecnologias {
+            position: relative;
+            overflow-x: hidden; /* Hacemos que el overflow sea oculto para que no se vea el scroll */
+            white-space: nowrap; /* evita que los elementos se dividan en varias líneas */
+        }
+
+        .contenedor {
+            display: inline-block;
+            width: 100%;
+            animation: desplazar 10s linear infinite; /* Animación de desplazamiento automático */
+        }
+
+        .elemento {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+            margin-right: 20px;
+        }
+
+        .navegacion {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1;
+        }
+
+        .flecha-izquierda,
+        .flecha-derecha {
+            font-size: 0px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .flecha-izquierda:hover,
+        .flecha-derecha:hover {
+            color: #333;
+        }
+
+        /* Animación de desplazamiento automático */
+        @keyframes desplazar {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tecnologias">
+        <div class="contenedor">
+            <div class="elemento">Elemento 1</div>
+            <div class="elemento">Elemento 2</div>
+            <div class="elemento">Elemento 3</div>
+            <div class="elemento">Elemento 4</div>
+            <div class="elemento">Elemento 5</div>
+            <div class="elemento">Elemento 6</div>
+            <div class="elemento">Elemento 7</div>
+            <div class="elemento">Elemento 8</div>
+        </div>
+        <div class="navegacion">
+            <button class="flecha-izquierda">&#8249;</button>
+            <button class="flecha-derecha">&#8250;</button>
+        </div>
+    </div>
+    <script>
+        const container = document.querySelector(".contenedor");
+const items = document.querySelectorAll(".elemento");
+const prevButton = document.querySelector(".flecha-izquierda");
+const nextButton = document.querySelector(".flecha-derecha");
+
+const itemWidth = items[0].getBoundingClientRect().width;
+const visibleItems = Math.floor(container.getBoundingClientRect().width / itemWidth);
+
+let currentPosition = 0;
+let targetPosition = 0;
+let isPaused = false;
+
+// Clonar elementos al final del contenedor
+for (let i = 0; i < visibleItems; i++) {
+  const clone = items[i].cloneNode(true);
+  container.appendChild(clone);
+}
+
+nextButton.addEventListener("click", () => {
+  currentPosition += 1;
+  container.style.transition = "transform 0.4s ease-in-out";
+  container.style.transform = `translateX(${-currentPosition * itemWidth}px)`;
+
+  // Clonar elementos al final del contenedor cuando se alcanza el final
+  if (currentPosition >= items.length) {
+    currentPosition = 0;
+    setTimeout(() => {
+      container.style.transition = "none";
+      container.style.transform = `translateX(0)`;
+    }, 400);
+  }
+});
+
+prevButton.addEventListener("click", () => {
+  currentPosition -= 1;
+  container.style.transition = "transform 0.4s ease-in-out";
+  container.style.transform = `translateX(${-currentPosition * itemWidth}px)`;
+
+  // Mover al final del contenedor clonado cuando se alcanza el inicio
+  if (currentPosition < 0) {
+    currentPosition = items.length - 1;
+    container.style.transition = "none";
+    container.style.transform = `translateX(${-items.length * itemWidth}px)`;
+
+    setTimeout(() => {
+      currentPosition = items.length - 2;
+      container.style.transition = "transform 0.4s ease-in-out";
+      container.style.transform = `translateX(${-currentPosition * itemWidth}px)`;
+    }, 0);
+  }
+});
+
+container.addEventListener("mouseenter", () => {
+  isPaused = true;
+  container.style.animationPlayState = "paused";
+});
+
+container.addEventListener("mouseleave", () => {
+  isPaused = false;
+  container.style.animationPlayState = "running";
+});
+
+// Animación de desplazamiento automático
+function animate() {
+  if (!isPaused) {
+    currentPosition += 0.01;
+    container.style.transform = `translateX(${-currentPosition}%)`;
+
+    // Clonar elementos al final del contenedor cuando se alcanza el final
+    if (currentPosition >= 100) {
+      currentPosition = 0;
+      container.style.transform = `translateX(0)`;
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+
+    </script>
+    </body>
+</html>

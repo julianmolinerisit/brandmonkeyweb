@@ -18,7 +18,6 @@ section[id] {
 
 body {
   font-family: "Montserrat", sans-serif;
-  background-image: url("../img/space.jpg");
   color: var(--text-color);
   padding-top: 70px;
 }
@@ -46,4 +45,10 @@ a {
     padding-top: 70px;
     padding-bottom: 70px;
   }
+}
+
+
+
+.img-back{
+  background-image: url("../img/space.svg");
 }

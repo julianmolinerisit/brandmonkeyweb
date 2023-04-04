@@ -1,10 +1,10 @@
 .banner-container {
   width: 70%;
   height: 390px;
-  margin: 20px auto;
+  margin: 25px auto;
   position: relative;
   overflow: hidden;
-  background-color: #1bec09;
+  background-color: magenta;
 }
 
 .banner-images {
@@ -43,29 +43,29 @@
 }
 
 .container-video {
-  display: flex;
-  align-items: center;
+display: flex;
+align-items: center;
 }
 
 .video {
-  width: 390px;
-  height: 390px;
-  position: relative;
+width: 390px;
+height: 390px;
+position: relative;
 }
 
 .video video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ajuste del video al tamaño del contenedor */
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover; /* ajuste del video al tamaño del contenedor */
 }
 
-.texto-video {
+  .texto-video {
   flex: 1;
   font-weight: 500;
-  font-size: 16.5px;
+  font-size: 16.50px;
   font-style: oblique;
   color: white;
   font-family: sans-serif;
